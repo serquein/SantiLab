@@ -39,4 +39,32 @@ SELECT a.title, b.name
 FROM film AS a
 INNER JOIN language AS b 
 USING (language_id)
-WHERE title LIKE 'M%' and name = ('English') OR ('italian')
+WHERE title LIKE 'M%' and name = ('English') OR ('italian');
+
+#6 Display the total amount rung up by each staff member in August of 2005.
+SELECT a.first_name, a.last_name, sum(b.amount)
+FROM staff AS a
+INNER JOIN payment AS b
+USING (staff_id)
+WHERE payment_date > '2005-08-01'  AND payment_date < '2005-08-31'
+GROUP BY staff_id
+ORDER BY staff_id DESC;
+
+#7 List each film and the number of actors who are listed for that film.
+
+SELECT a.title, COUNT(b.actor_id)
+FROM film AS a
+INNER JOIN film_actor AS b
+USING (film_id)
+GROUP BY title
+ORDER BY COUNT(actor_id) DESC;
+
+#8 Using the tables payment and customer and the JOIN command, list the total paid by each customer. 
+# List the customers alphabetically by last name.
+
+SELECT a.first_name, a.last_name, sum(b.amount)
+FROM customer AS a
+INNER JOIN payment AS b
+USING (customer_id)
+GROUP BY amount
+ORDER BY amount
