@@ -20,7 +20,7 @@ SELECT DISTINCT status  FROM loan
 ORDER BY status;
 
 #Query 5. What is the loan_id of the highest payment received in the loan table?
-SELECT loan_id FROM loan
+SELECT loan_id FROM loan.bank
 ORDER BY payments DESC
 LIMIT 1;
 
@@ -30,7 +30,6 @@ ORDER BY account_id
 LIMIT 5;
 
 #Query 7. What are the top 5 account_ids with the lowest loan amount that have a loan duration of 60 in the loan table? 
-
 SELECT account_id FROM loan
 WHERE duration = 60
 ORDER BY amount
@@ -38,7 +37,12 @@ LIMIT 5;
 
 #Query 8. What are the unique values of k_symbol in the order table?
 SELECT DISTINCT k_symbol FROM `order`
+#WHERE k_symbol <> "";
 ORDER BY k_symbol;
+
+#SELECT DISTINCT k_symbol FROM order
+#WHERE k_symbol <> " ";
+
 
 #Query 9. In the order table, what are the order_ids of the client with the account_id 34?
 SELECT order_id FROM `order`
