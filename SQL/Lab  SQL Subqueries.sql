@@ -51,11 +51,10 @@ WHERE address_id IN (SELECT address_id
 																FROM country
                                                                 WHERE country = 'Canada')));
 #5.2 Do the same with joins. 
-SELECT a.first_name, a.last_name, a.email, b.country
+SELECT a.first_name, a.last_name, a.email
 FROM customer as a
-JOIN LEFT 
-address_id (address)
-city_id (city)
-country_id(contry AS b)
-country = 'Canada');
+LEFT JOIN address USING (address_id)
+	LEFT JOIN city USING (city_id) 
+		LEFT JOIN country USING (country_id)
+			WHERE country = 'Canada';
 										
