@@ -46,7 +46,7 @@ SELECT a.first_name, a.last_name, sum(b.amount)
 FROM staff AS a
 INNER JOIN payment AS b
 USING (staff_id)
-WHERE payment_date > '2005-08-01'  AND payment_date < '2005-08-31'
+WHERE payment_date > '2005-08-01'  AND payment_date < '2005-08-31' #LIKE '2005-08%'
 GROUP BY staff_id
 ORDER BY staff_id DESC;
 
