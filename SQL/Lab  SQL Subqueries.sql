@@ -21,8 +21,8 @@ FROM actor
 WHERE actor_id IN (SELECT actor_id
 					FROM film_actor
                     WHERE film_id = (SELECT film_id
-									FROM film
-                                    WHERE title = 'Alone Trip'));
+										FROM film
+										WHERE title = 'Alone Trip'));
 
 #4 Sales have been lagging among young families, and you wish to target all 
   #family movies for a promotion. Identify all movies categorized as family films.
@@ -31,14 +31,12 @@ FROM film
 WHERE film_id IN (SELECT film_id
 					FROM film_category
                     WHERE category_id = (SELECT category_id
-									FROM category
-                                    WHERE name = 'family'));
+											FROM category
+											WHERE name = 'family'));
 
 
 #5 Get name and email from customers from Canada using subqueries. 
-# Note that to create a join, you will have to 
-# identify the correct tables with their primary keys and foreign keys, 
-# that will help you get the relevant information.
+# Note that to create a join, you will have to identify the correct tables with their primary keys and foreign keys, that will help you get the relevant information.
 
 #5.1
 SELECT first_name, last_name, email
@@ -57,4 +55,12 @@ LEFT JOIN address USING (address_id)
 	LEFT JOIN city USING (city_id) 
 		LEFT JOIN country USING (country_id)
 			WHERE country = 'Canada';
-										
+
+#6 Which are films starred by the most prolific actor?
+
+SELECT first_name, last_name
+FROM actor
+WHERE actor_id IN (SELECT actor_id
+					FROM film_actor
+                    WHERE film_id IN (SELECT COUNT(film_id)
+										FROM film)
