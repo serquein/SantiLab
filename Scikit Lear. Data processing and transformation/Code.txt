@@ -1,0 +1,4 @@
+from sklearn.preprocessing import OrdinalEncoder
+encoder = OrdinalEncoder(categories=[['basic', 'extended', 'premium'], ['high school or below', 'college', 'bachelor', 'master', 'doctor'], ['small', 'medsize', 'large']])
+encoder.fit(cat_ord_df[['coverage', 'education', 'vehicle_size']])
+encoded_cols = encoder.transform(cat_ord_df[['coverage', 'education', 'vehicle_size']])
